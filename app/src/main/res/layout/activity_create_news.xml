@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackground"
+    android:fitsSystemWindows="true">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                android:background="?attr/colorPrimary" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/news_text"
+                android:layout_marginTop="5dp"
+                android:padding="15dp"
+                android:textSize="18dp"
+                android:hint="Введите содержание публикации"/>
+
+            <ImageView
+                android:layout_width="220dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center"
+                android:id="@+id/newNewsImg"
+                android:src="@drawable/news_img"/>
+            <TextView
+                android:layout_width="170dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/add_img_news"/>
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/add_news"
+            android:src="@drawable/next"
+            app:backgroundTint="@color/myGreen"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"/>
+
+
+    </android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">YouLead Omsk</string>
+    <string name="download_start">загрузка...</string>
+    <string name="view_navigation_open">open</string>
+    <string name="view_navigation_close">close</string>
+
+    <string name="news">Новости</string>
+    <string name="about">О Форуме</string>
+    <string name="program">Программа</string>
+    <string name="org">Организаторы</string>
+    <string name="partners">Партнеры</string>
+    <string name="leaders">Участники</string>
+    <string name="speakers">Спикеры</string>
+    <string name="dev">Разработчик</string>
+    <string name="profile">Профиль</string>
+    <string name="newsText">Содержание новостного информационного сообщения</string>
+    <string name="add_img_news">Нажмите, что бы добавить фото</string>
+
+    <string name="aboutdev">О разработчике</string>
+    <string name="aboutdevcon">Контакты</string>
+    <string name="mycontactsName">Глеб Шушарин</string>
+    <string name="mycontactsEmail">shusharin@stairenx.ru</string>
+    <string name="mycontactsPhone">+79620400220</string>
+
+    <string name="partner_general">Генеральный партнер</string>
+    <string name="partner_key">Ключевой партнер</string>
+    <string name="partner_strategy">Стратегический партнер</string>
+    <string name="partner_organisaters">Организационные партнеры</string>
+    <string name="partner_info">Информационные партнеры</string>
+
+    <string name="log_in">Авторизация</string>
+    <string name="log_up">Регистрация</string>
+    <string name="hint_login_pass">Пароль</string>
+    <string name="hint_login_phone">Телефон</string>
+    <string name="hint_login_info">Расскажите о себе (это необходимо для нетворкинга)</string>
+    <string name="hint_login_info2">Если нет желания найти новые полезные знакомства, то оставте следующее поле пустым</string>
+    <string name="login_btn">Войти</string>
+    <string name="logup_btn">Зарегистрироваться</string>
+    <string name="logout_btn">Выйти</string>
+    <string name="add_news">Опубликовать</string>
+
+</resources>

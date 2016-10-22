@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackground"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="ru.stairenx.viergo.youleadomsk.MainActivity"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            android:background="?attr/colorPrimary" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="175dp"
+                android:orientation="vertical">
+                
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="225dp"
+                    android:id="@+id/logo_youlead"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginRight="26dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginBottom="9dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Когда:"
+                            android:layout_weight="3"
+                            android:textSize="18dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/about_date"
+                            android:layout_weight="1"
+                            android:textSize="18dp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Место:"
+                            android:layout_weight="4"
+                            android:textSize="18dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/about_mesto"
+                            android:layout_weight="1"
+                            android:textSize="18dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/about_youlead"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginRight="26dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginBottom="9dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:id="@+id/logo_aiesec"
+                    android:layout_gravity="bottom|right"/>
+                
+            </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/myBlue"
+        app:itemTextColor="@color/mainBackground"
+        app:menu="@menu/navigation_menu"
+        app:headerLayout="@layout/navigation_header"/>
+
+</android.support.v4.widget.DrawerLayout>
