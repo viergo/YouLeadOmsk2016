@@ -11,7 +11,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import ru.stairenx.viergo.youleadomsk.Constants;
-import ru.stairenx.viergo.youleadomsk.ProgramItem;
+import ru.stairenx.viergo.youleadomsk.ItemPack.ProgramItem;
 import ru.stairenx.viergo.youleadomsk.R;
 import ru.stairenx.viergo.youleadomsk.adapter.ProgramAdapter;
 import ru.stairenx.viergo.youleadomsk.database.DataBaseAction;

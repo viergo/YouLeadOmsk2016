@@ -21,11 +21,6 @@
         android:icon="@drawable/speakers"
         android:title="@string/speakers"/>
 
-    <item android:id="@+id/leaders"
-        android:orderInCategory="5"
-        android:icon="@drawable/leaders"
-        android:title="@string/leaders"/>
-
     <item android:id="@+id/org"
         android:orderInCategory="6"
         android:icon="@drawable/org"

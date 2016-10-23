@@ -12,8 +12,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import ru.stairenx.viergo.youleadomsk.ItemPack.SpeakerItem;
 import ru.stairenx.viergo.youleadomsk.R;
-import ru.stairenx.viergo.youleadomsk.SpeakerItem;
 import ru.stairenx.viergo.youleadomsk.database.DataBaseAction;
 
 /**

@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import ru.stairenx.viergo.youleadomsk.ItemPack.NewsItem;
 import ru.stairenx.viergo.youleadomsk.activity.CreateNewsActivity;
 import ru.stairenx.viergo.youleadomsk.adapter.NewsAdapter;
 import ru.stairenx.viergo.youleadomsk.database.DataBaseAction;

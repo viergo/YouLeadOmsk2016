@@ -4,7 +4,6 @@ import android.view.MenuItem;
 
 import ru.stairenx.viergo.youleadomsk.activity.AboutActivity;
 import ru.stairenx.viergo.youleadomsk.activity.DevActivity;
-import ru.stairenx.viergo.youleadomsk.activity.LeadersActivity;
 import ru.stairenx.viergo.youleadomsk.activity.OrgActivity;
 import ru.stairenx.viergo.youleadomsk.activity.PartnersActivity;
 import ru.stairenx.viergo.youleadomsk.activity.ProfileActivity;
@@ -33,10 +32,6 @@ public static Class includeNavAction(MenuItem item){
 
         case R.id.speakers :
             classActivity = SpeakersActivity.class;
-            break;
-
-        case R.id.leaders :
-            classActivity = LeadersActivity.class;
             break;
 
         case R.id.partners :

@@ -1,4 +1,4 @@
-package ru.stairenx.viergo.youleadomsk;
+package ru.stairenx.viergo.youleadomsk.ItemPack;
 
 /**
  * Created by viergo on 25.09.16.

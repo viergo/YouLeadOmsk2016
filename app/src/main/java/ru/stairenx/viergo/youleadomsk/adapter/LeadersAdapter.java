@@ -12,8 +12,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import ru.stairenx.viergo.youleadomsk.ItemPack.UsersItem;
 import ru.stairenx.viergo.youleadomsk.R;
-import ru.stairenx.viergo.youleadomsk.UsersItem;
 import ru.stairenx.viergo.youleadomsk.database.DataBaseAction;
 
 /**

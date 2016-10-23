@@ -10,5 +10,6 @@
     <color name="myGreen">#46964C</color>
     <color name="myOrange">#FF7700</color>
     <color name="myGrey">#dcdcdc</color>
+    <color name="myWhite">#fff</color>
 
 </resources>

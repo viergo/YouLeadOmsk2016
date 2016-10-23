@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import ru.stairenx.viergo.youleadomsk.OrgItem;
+import ru.stairenx.viergo.youleadomsk.ItemPack.OrgItem;
 import ru.stairenx.viergo.youleadomsk.R;
 import ru.stairenx.viergo.youleadomsk.database.DataBaseAction;
 

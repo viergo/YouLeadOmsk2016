@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.stairenx.viergo.youleadomsk.Constants;
-import ru.stairenx.viergo.youleadomsk.NewsItem;
-import ru.stairenx.viergo.youleadomsk.OrgItem;
-import ru.stairenx.viergo.youleadomsk.ProgramItem;
-import ru.stairenx.viergo.youleadomsk.SpeakerItem;
-import ru.stairenx.viergo.youleadomsk.UsersItem;
+import ru.stairenx.viergo.youleadomsk.ItemPack.NewsItem;
+import ru.stairenx.viergo.youleadomsk.ItemPack.OrgItem;
+import ru.stairenx.viergo.youleadomsk.ItemPack.ProgramItem;
+import ru.stairenx.viergo.youleadomsk.ItemPack.SpeakerItem;
+import ru.stairenx.viergo.youleadomsk.ItemPack.UsersItem;
 
 /**
  * Created by viergo on 26.09.16.

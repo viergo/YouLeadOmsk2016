@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ru.stairenx.viergo.youleadomsk.ProgramItem;
+import ru.stairenx.viergo.youleadomsk.ItemPack.ProgramItem;
 import ru.stairenx.viergo.youleadomsk.R;
 
 /**
