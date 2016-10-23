@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         initNewsFeed();
     }
 
+
+
+
     private void initFab(){
         fab = (FloatingActionButton) findViewById(R.id.add_item_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 /* *** Метод для перехода на активность создания новости *** */
                 startActivity(new Intent(MainActivity.this, CreateNewsActivity.class));
-                MainActivity.this.finish();
+                //MainActivity.this.finish();
             }
         });
     }
