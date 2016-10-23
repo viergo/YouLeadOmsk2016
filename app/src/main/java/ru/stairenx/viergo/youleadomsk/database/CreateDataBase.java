@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CreateDataBase extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME ="stairenx_youlead";
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 5;
 
     public static final String TABLE_NAME = "firstday";
     public static final String TABLE_NAME_2 = "seconddaycareer";
@@ -48,15 +48,6 @@ public class CreateDataBase extends SQLiteOpenHelper {
     public static final String COLUMN_NEWS_DATE = "dateNews";
     public static final String COLUMN_NEWS_TEXT = "textNews";
     public static final String COLUMN_NEWS_IMG = "img";
-
-    public static final String TABLE_USERS = "users";
-
-    public static final String COLUMN_USERS_PHONE = "phone";
-    public static final String COLUMN_USERS_NAME = "name";
-    public static final String COLUMN_USERS_IMG = "img";
-    public static final String COLUMN_USERS_INFO = "info";
-    public static final String COLUMN_USERS_EMAIL = "email";
-
 
     public static final String TABLE_LOGIN = "login";
 
@@ -117,14 +108,6 @@ public class CreateDataBase extends SQLiteOpenHelper {
             COLUMN_LOGIN_INFO+" text, "+
             COLUMN_LOGIN_NAME+" text, "+
             COLUMN_LOGIN_IMG+" text);";
-    private static final String CREATE_TABLE_USERS = "CREATE TABLE "+TABLE_USERS+
-            " ( "+COLUMN_ID+" integer primary key autoincrement, "+
-            COLUMN_NEWS_SERVER_ID+" int, "+
-            COLUMN_USERS_PHONE+"text, "+
-            COLUMN_USERS_NAME+" text, "+
-            COLUMN_USERS_IMG+" text, "+
-            COLUMN_USERS_INFO+" text, "+
-            COLUMN_USERS_EMAIL+" text);";
 
 
     public CreateDataBase(Context context) {
@@ -140,10 +123,8 @@ public class CreateDataBase extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_ORG);
         db.execSQL(CREATE_TABLE_NEWS);
         db.execSQL(CREATE_TABLE_LOGIN);
-        db.execSQL(CREATE_TABLE_USERS);
         db.execSQL("INSERT INTO news (server,imgAuthor,author,dateNews,textNews, img) VALUES (1, 'http://stairenx.ru/res/img/iam.jpg', 'Глеб Шушарин', '10:44 / 08.10.16', 'Вот и вышло приложение для всероссийского молодёжного форума YouLead в Омске.\n" +
                 "Пользуйтесь, делитесь новостями касаемых YouLead, находите новых знакомых, обменивайтесь контактами и Реализуйте Энергию своей Мечты!', 'http://stairenx.ru/res/api/youlead/img_news/baner_stairenx_green_430x269.png')");
-        db.execSQL("INSERT INTO users (server, name, img,info) VALUES (1, 'Глеб Шушарин', 'http://stairenx.ru/res/img/iam.jpg', 'Занимаюсь мобильной и web разработкой. Учусь в Летном. Разбираюсь в электронике. Слежу на новостями в сфере технических и IT стартапов.')");
     }
 
     @Override
@@ -155,7 +136,6 @@ public class CreateDataBase extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_ORG);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NEWS);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_LOGIN);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_USERS);
         onCreate(db);
     }
 

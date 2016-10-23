@@ -13,7 +13,6 @@ import ru.stairenx.viergo.youleadomsk.ItemPack.NewsItem;
 import ru.stairenx.viergo.youleadomsk.ItemPack.OrgItem;
 import ru.stairenx.viergo.youleadomsk.ItemPack.ProgramItem;
 import ru.stairenx.viergo.youleadomsk.ItemPack.SpeakerItem;
-import ru.stairenx.viergo.youleadomsk.ItemPack.UsersItem;
 
 /**
  * Created by viergo on 26.09.16.
@@ -68,14 +67,27 @@ public class DataBaseAction {
         sqLiteDatabase.execSQL(textQuery);
     }
 
-    public static void addAllSpeakers(){
-        sqLiteDatabase.execSQL("DELETE FROM speakers");
-        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/zatolokin.png","Артем Затолокин","Блок: \nЗа границами возможностей.","Деятельность: \nБизнес-тренер, проектный консультант, продюсер проектов, игротехник, предприниматель, общественный деятель и управляющий партнер в Start&Fly! ");
-        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/grinberg.png","Марк Гринберг","Блок: \nМолодежь как энергия будущего.","Деятельность: \nБизнес-тренер, психотерапевт, Руководитель Центра психологического сопровождения бизнеса ЛЕГЕ АРТИС.");
-        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/pritulyak.png","Иван Притуляк","Блок: \nРеализуя энергию мечты.","Деятельность: \nАктёр, продюсер, радио и телеведущий.");
-        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/dubovez.png","Максим Дубовец","Блок: \nОт мысли к действию.","Деятельность: \nПсихоаналитик, бизнес-тренер.");
-        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/belyavskiy.png","Павел Белявский","Блок: \nПлатформа успеха","Деятельность: \nБизнес тренер, НЛП практик.");
-        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/myachin.png","Сергей Мячин","Блок: \nМоя мечта","Деятельность: \nпреподаватель кафедры математики и информационных технологий при ОмГУ им. Ф.М. Достоевского.");
+    public static void addAllSpeakers() {
+        int result;
+        database = new CreateDataBase(context);
+        sqLiteDatabase = database.getWritableDatabase();
+        String textQuery = "SELECT * FROM " +CreateDataBase.TABLE_SPEAKER+" ;";
+        Cursor cursor = sqLiteDatabase.rawQuery(textQuery, null);
+        result = cursor.getCount();
+        cursor.close();
+        if(result==0){
+        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/grinberg.png", "Марк Гринберг", "Блок: \nМолодежь как энергия будущего.", "Деятельность: \nБизнес-тренер, директор Центра психологического сопровождения бизнеса \"ЛЕГЕ АРТИС\".");
+        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/shilnikov.png", "Павел Шильников", "Блок: \nSpeak Big.", "Деятельность: \nППОС ОмГТУ.");
+        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/paich.png", "Марина Пайч", "Блок: \nSpeak Big.", "Деятельность: \nРуководитель направления организационного развития в ADCI Solutions, работала в AIESEC.");
+        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/kuzmenko.png", "Евгений Кузьменко", "Блок: \nSpeak Big.", "Деятельность: \nкомпания \"Рахат\".");
+        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/myachin.png", "Сергей Мячин", "Блок: \nМоя мечта", "Деятельность: \nбизнес-аналитик компании \"Лайв Тайпинг\".");
+        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/gulivatenko.png", "Анастасия Гуливатенко", "Блок: \nЗавтра начинается сегодня", "Деятельность: \nминистерство экономики.");
+        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/zatolokin.png", "Артём Затолокин", "Блок: \nЗа границами возможностей.", "Деятельность: \nуправляющий партнер компании \"Start&Fly\", эксперт образовательных программ Общественной палаты РФ.");
+        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/borzunova.png", "Алёна Борзунова", "Блок: \nПлатформа успеха. \"От идеи до плана\".", "Деятельность: \nEvent-manager компании \"7bits\".");
+        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/tarasenko.png", "Анна Тарасенко", "Блок: \nПлатформа успеха. \"Создание бизнес модели на проекты участников\".", "Деятельность: \nГенеральный директор компании \"7bits\".");
+        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/dubovez.png", "Максим Дубовец", "Блок: \nОт мысли к действию.", "Деятельность: \nПсихотерапевт, работает в Центре психологического сопровождения бизнеса \"ЛЕГЕ АРТИС\".");
+        addSpeaker("http://stairenx.ru/res/api/youlead/speaker_img/pritulyak.png", "Иван Притуляк", "Блок: \nРеализуя энергию мечты.", "Деятельность: \nАктёр Лицейского театра, радиоведущий \"Радио-Сибирь\".");
+        }
     }
 
     public static List<OrgItem> getOrgs() {
@@ -227,35 +239,6 @@ public class DataBaseAction {
         sqLiteDatabase.execSQL(textQuery);
     }
 
-    public static List<UsersItem> getUsers(){
-        List<UsersItem> list = new ArrayList<>();
-        database = new CreateDataBase(context);
-        sqLiteDatabase = database.getWritableDatabase();
-        String textQuery = "SELECT * FROM " +CreateDataBase.TABLE_USERS+";";
-        Cursor cursor = sqLiteDatabase.rawQuery(textQuery, null);
-        while (cursor.moveToNext()) {
-            list.add(new UsersItem(
-                    cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_USERS_NAME)),
-                    cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_USERS_IMG)),
-                    cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_USERS_INFO))
-            ));
-        }
-        cursor.close();
-        return list;
-    }
-
-    public static int getLastUsersId(){
-        int id;
-        database = new CreateDataBase(context);
-        sqLiteDatabase = database.getWritableDatabase();
-        String textQuery = "SELECT * FROM " +CreateDataBase.TABLE_USERS+" ORDER BY _id DESC;";
-        Cursor cursor = sqLiteDatabase.rawQuery(textQuery, null);
-        cursor.moveToFirst();
-        id = cursor.getInt(cursor.getColumnIndex(CreateDataBase.COLUMN_NEWS_SERVER_ID));
-        cursor.close();
-        return id;
-    }
-
     public static int getLogin() throws Exception{
         int result;
         database = new CreateDataBase(context);
@@ -295,7 +278,7 @@ public class DataBaseAction {
         String textQuery = "SELECT * FROM " +CreateDataBase.TABLE_LOGIN+";";
         Cursor cursor = sqLiteDatabase.rawQuery(textQuery, null);
         while (cursor.moveToNext()) {
-                    info = cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_USERS_PHONE));
+                    info = cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_LOGIN_PHONE));
         }
         cursor.close();
         return info;
@@ -307,7 +290,7 @@ public class DataBaseAction {
         String textQuery = "SELECT * FROM " +CreateDataBase.TABLE_LOGIN+";";
         Cursor cursor = sqLiteDatabase.rawQuery(textQuery, null);
         while (cursor.moveToNext()) {
-            info = cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_USERS_NAME));
+            info = cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_LOGIN_NAME));
         }
         cursor.close();
         return info;
@@ -319,7 +302,7 @@ public class DataBaseAction {
         String textQuery = "SELECT * FROM " +CreateDataBase.TABLE_LOGIN+";";
         Cursor cursor = sqLiteDatabase.rawQuery(textQuery, null);
         while (cursor.moveToNext()) {
-            info = cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_USERS_EMAIL));
+            info = cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_LOGIN_EMAIL));
         }
         cursor.close();
         return info;
@@ -331,7 +314,7 @@ public class DataBaseAction {
         String textQuery = "SELECT * FROM " +CreateDataBase.TABLE_LOGIN+";";
         Cursor cursor = sqLiteDatabase.rawQuery(textQuery, null);
         while (cursor.moveToNext()) {
-            info = cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_USERS_INFO));
+            info = cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_LOGIN_INFO));
         }
         cursor.close();
         return info;
@@ -343,7 +326,7 @@ public class DataBaseAction {
         String textQuery = "SELECT * FROM " +CreateDataBase.TABLE_LOGIN+";";
         Cursor cursor = sqLiteDatabase.rawQuery(textQuery, null);
         while (cursor.moveToNext()) {
-            info = cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_USERS_IMG));
+            info = cursor.getString(cursor.getColumnIndex(CreateDataBase.COLUMN_LOGIN_IMG));
         }
         cursor.close();
         return info;

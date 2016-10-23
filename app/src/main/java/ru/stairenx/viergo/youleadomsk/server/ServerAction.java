@@ -37,11 +37,6 @@ public class ServerAction {
         new GETJSON_SECOND_YOUTH().execute();
     }
 
-    public static void getUsers(){
-        DataBaseAction.initContext(DataBaseAction.getContext());
-        new GETJSON_USERS().execute();
-    }
-
     public static void getLogin(String num){
         phone = num;
         new GETJSON_LOGIN_DATA().execute();
@@ -164,36 +159,6 @@ public class ServerAction {
                                 jo.getString(CreateDataBase.COLUMN_NEWS_DATE),
                                 jo.getString(CreateDataBase.COLUMN_NEWS_TEXT),
                                 jo.getString(CreateDataBase.COLUMN_NEWS_IMG)
-                        );
-                        Log.d("********","Запись в локальную базу прошла успешно");
-                        i++;
-                    }
-                } catch (JSONException e) {
-                    e.getMessage();
-                }
-            }
-            return null;
-        }
-    }
-
-    private static class GETJSON_USERS extends AsyncTask<Void,Void,Void> {
-        @Override
-        protected Void doInBackground(Void... params) {String answrJSON;
-            answrJSON = ConnectServer.getJSON(Constants.GET_USERS+"?id="+DataBaseAction.getLastUsersId());
-            Log.d("*(*(*(*(*(*(*", answrJSON);
-            if (answrJSON != null) {
-                try {
-                    JSONArray ja = new JSONArray(answrJSON);
-                    JSONObject jo;
-                    int i = 0;
-                    while (i < ja.length()) {
-                        jo = ja.getJSONObject(i);
-                        DataBaseAction.addUsers(
-                                Integer.parseInt(jo.getString(CreateDataBase.COLUMN_ID)),
-                                jo.getString(CreateDataBase.COLUMN_USERS_NAME),
-                                jo.getString(CreateDataBase.COLUMN_USERS_IMG),
-                                jo.getString(CreateDataBase.COLUMN_USERS_INFO),
-                                jo.getString(CreateDataBase.COLUMN_USERS_EMAIL)
                         );
                         Log.d("********","Запись в локальную базу прошла успешно");
                         i++;
