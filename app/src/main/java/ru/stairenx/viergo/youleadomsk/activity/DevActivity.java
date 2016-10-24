@@ -14,6 +14,8 @@ import android.widget.TextView;
 import ru.stairenx.viergo.youleadomsk.Constants;
 import ru.stairenx.viergo.youleadomsk.CreateWidget;
 import ru.stairenx.viergo.youleadomsk.R;
+import ru.stairenx.viergo.youleadomsk.database.DataBaseAction;
+import ru.stairenx.viergo.youleadomsk.server.ServerAction;
 
 /**
  * Created by viergo on 22.09.16.
@@ -31,6 +33,8 @@ public class DevActivity extends AppCompatActivity {
         initDrawerLayout();
         TextView tv = (TextView) findViewById(R.id.stx);
         tv.setText(Constants.stx);
+        DataBaseAction.initContext(getApplicationContext());
+        ServerAction.getNews();
     }
 
     private void initToolbar() {

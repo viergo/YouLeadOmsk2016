@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mRegEmail;
     private EditText mRegName;
     private EditText mRegSername;
-    private EditText mRegInfo;
     private EditText mRegPas;
     private EditText mRegRePas;
     private Button mSignInButton;
@@ -47,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         mRegEmail = (EditText) findViewById(R.id.sign_up_email);
         mRegName = (EditText) findViewById(R.id.sign_up_name);
         mRegSername = (EditText) findViewById(R.id.sign_up_sername);
-        mRegInfo = (EditText) findViewById(R.id.sign_up_Info);
         mRegPas = (EditText) findViewById(R.id.sign_up_pas);
         mRegRePas = (EditText) findViewById(R.id.sign_up_repas);
         mSignInButton = (Button) findViewById(R.id.sign_up_button);
@@ -76,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                     if(mRegPas.getText().toString().equals(mRegRePas.getText().toString())){
                         String name = mRegSername.getText().toString()+" "+mRegName.getText().toString();
-                        Registration.regAcount(mRegPhone.getText().toString(),mRegPas.getText().toString(),name,mRegEmail.getText().toString(),mRegInfo.getText().toString());
+                        Registration.regAcount(mRegPhone.getText().toString(),mRegPas.getText().toString(),name,mRegEmail.getText().toString());
                         mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                         Toast.makeText(LoginActivity.this, "Регистрация прошла успешно",Toast.LENGTH_LONG).show();
                         mLoginPhone.setText(mRegPhone.getText().toString());

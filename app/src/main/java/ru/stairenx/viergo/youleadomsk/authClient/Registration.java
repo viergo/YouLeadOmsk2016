@@ -17,7 +17,7 @@ public class Registration {
     private static HttpURLConnection conn;
     private static Integer res;
 
-    public static void regAcount(String login, String pass, String name, String email, String info){
+    public static void regAcount(String login, String pass, String name, String email){
         String post_url = new String();
         String img = "http://stairenx.ru/res/api/youlead/img/plug.png";
         try {
@@ -30,9 +30,7 @@ public class Registration {
                     +"&name="
                     + URLEncoder.encode(String.valueOf(name.toString()), "UTF-8")
                     +"&img="
-                    + URLEncoder.encode(String.valueOf(img.toString()), "UTF-8")
-                    +"&info="
-                    + URLEncoder.encode(String.valueOf(info.toString()), "UTF-8");
+                    + URLEncoder.encode(String.valueOf(img.toString()), "UTF-8");
         } catch (IOException e) {
             e.getMessage();
         }

@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         initToolbar();
         initDrawerLayout();
         initFab();
-        DataBaseAction.initContext(getApplicationContext());
-        ServerAction.getProgram();
         initNewsFeed();
     }
 

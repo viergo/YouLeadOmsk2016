@@ -32,9 +32,9 @@ public class SpeakersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_speakers);
         initToolbar();
         initDrawerLayout();
-        DataBaseAction.initContext(getApplicationContext());
-        ServerAction.getProgram();
         initAllSpeakers();
+        DataBaseAction.initContext(getApplicationContext());
+        ServerAction.getNews();
     }
 
     private void initToolbar() {

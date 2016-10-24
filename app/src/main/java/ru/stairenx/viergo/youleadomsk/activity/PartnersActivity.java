@@ -16,8 +16,6 @@ import com.squareup.picasso.Picasso;
 import ru.stairenx.viergo.youleadomsk.Constants;
 import ru.stairenx.viergo.youleadomsk.CreateWidget;
 import ru.stairenx.viergo.youleadomsk.R;
-import ru.stairenx.viergo.youleadomsk.database.DataBaseAction;
-import ru.stairenx.viergo.youleadomsk.server.ServerAction;
 
 /**
  * Created by viergo on 22.09.16.
@@ -34,8 +32,6 @@ public class PartnersActivity extends AppCompatActivity {
         initToolbar();
         initDrawerLayout();
         initImagePartners();
-        DataBaseAction.initContext(getApplicationContext());
-        ServerAction.getProgram();
     }
 
     private void initToolbar() {

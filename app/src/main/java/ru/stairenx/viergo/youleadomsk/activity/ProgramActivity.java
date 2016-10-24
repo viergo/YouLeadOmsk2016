@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import ru.stairenx.viergo.youleadomsk.CreateWidget;
 import ru.stairenx.viergo.youleadomsk.R;
 import ru.stairenx.viergo.youleadomsk.adapter.TabsFragmentAdapter;
+import ru.stairenx.viergo.youleadomsk.database.DataBaseAction;
+import ru.stairenx.viergo.youleadomsk.server.ServerAction;
 
 /**
  * Created by viergo on 22.09.16.
@@ -32,6 +34,8 @@ public class ProgramActivity extends AppCompatActivity {
         initToolbar();
         initDrawerLayout();
         initTabs();
+        DataBaseAction.initContext(getApplicationContext());
+        ServerAction.getNews();
     }
 
     private void initToolbar() {

@@ -15,7 +15,6 @@ import ru.stairenx.viergo.youleadomsk.CreateWidget;
 import ru.stairenx.viergo.youleadomsk.R;
 import ru.stairenx.viergo.youleadomsk.adapter.AllOrgsAdapter;
 import ru.stairenx.viergo.youleadomsk.database.DataBaseAction;
-import ru.stairenx.viergo.youleadomsk.server.ServerAction;
 
 /**
  * Created by viergo on 22.09.16.
@@ -32,8 +31,6 @@ public class OrgActivity extends AppCompatActivity {
         setContentView(R.layout.activity_org);
         initToolbar();
         initDrawerLayout();
-        DataBaseAction.initContext(getApplicationContext());
-        ServerAction.getProgram();
         initAllOrgs();
     }
 

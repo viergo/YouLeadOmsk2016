@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import ru.stairenx.viergo.youleadomsk.database.DataBaseAction;
 import ru.stairenx.viergo.youleadomsk.server.ConnectServer;
+import ru.stairenx.viergo.youleadomsk.server.ServerAction;
 
 /**
  * Created by viergo on 23.08.16.
@@ -69,6 +70,9 @@ public class StartActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                DataBaseAction.initContext(getApplicationContext());
+                ServerAction.getProgram();
+                ServerAction.getNews();
             }else{
                 Toast.makeText(StartActivity.this, "Требуется интернет подключение. Повторите попытку", Toast.LENGTH_LONG).show();
             }

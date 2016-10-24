@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -90,7 +91,12 @@ public class CreateNewsActivity extends AppCompatActivity {
                 if(news.equals("")) {
                     Toast.makeText(CreateNewsActivity.this, "Поле не должно быть пустым", Toast.LENGTH_SHORT).show();
                 }else{
-                    ServerAction.addNews(DataBaseAction.getLoginImg(), DataBaseAction.getLoginName(),"not date", news);
+                    Time time = new Time(Time.getCurrentTimezone());
+                    time.setToNow();
+                    String date =  time.format("%H:%M")+" / "+time.format("%d.%m.%Y");
+                    ServerAction.addNews(DataBaseAction.getLoginImg(), DataBaseAction.getLoginName(),date, news);
+                    DataBaseAction.initContext(getApplicationContext());
+                    ServerAction.getNews();
                     startActivity(new Intent(CreateNewsActivity.this, MainActivity.class));
                     CreateNewsActivity.this.finish();
                 }
