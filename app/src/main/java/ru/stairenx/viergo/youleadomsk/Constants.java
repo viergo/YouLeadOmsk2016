@@ -15,6 +15,7 @@ public class Constants {
     public static String AUTHORIZATION = "http://stairenx.ru/res/api/youlead/method/autorization.php";
     public static String SIGNUP = "http://stairenx.ru/res/api/youlead/method/addUsers.php";
     public static String ADD_NEWS = "http://stairenx.ru/res/api/youlead/method/addNews.php";
+    public static String UPLOAD_NEWS_IMAGE = "http://stairenx.ru/res/api/youlead/method/addNewsImg.php";
 
     public static String LINK_IMG = http+"/res/api/youlead/img/";
     public static String PNG = ".png";

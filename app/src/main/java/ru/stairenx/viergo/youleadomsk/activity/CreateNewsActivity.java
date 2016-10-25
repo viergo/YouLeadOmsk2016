@@ -26,7 +26,11 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
+import ru.stairenx.viergo.youleadomsk.Constants;
 import ru.stairenx.viergo.youleadomsk.MainActivity;
 import ru.stairenx.viergo.youleadomsk.R;
 import ru.stairenx.viergo.youleadomsk.database.DataBaseAction;
@@ -42,6 +46,9 @@ public class CreateNewsActivity extends AppCompatActivity {
     private EditText text;
     private ImageView img;
     private static final int REQUEST = 1;
+    private String link;
+    private int serverResponseCode = 0;
+    private String nameImg = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,8 +74,9 @@ public class CreateNewsActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             img.setImageBitmap(setImg);
-            Log.d("^^^^",getPath(selectedImage));
-            new SEND_IMG().execute(selectedImage);
+            link = getPath(selectedImage);
+            nameImg = setNameImg(link);
+            new SEND_IMG().execute();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -91,16 +99,20 @@ public class CreateNewsActivity extends AppCompatActivity {
                 if(news.equals("")) {
                     Toast.makeText(CreateNewsActivity.this, "Поле не должно быть пустым", Toast.LENGTH_SHORT).show();
                 }else{
-                    Time time = new Time(Time.getCurrentTimezone());
-                    time.setToNow();
-                    String date =  time.format("%H:%M")+" / "+time.format("%d.%m.%Y");
-                    ServerAction.addNews(DataBaseAction.getLoginImg(), DataBaseAction.getLoginName(),date, news);
-                    DataBaseAction.initContext(getApplicationContext());
-                    ServerAction.getNews();
-                    startActivity(new Intent(CreateNewsActivity.this, MainActivity.class));
-                    CreateNewsActivity.this.finish();
+                    if(nameImg.equals("")) {
+                        Toast.makeText(CreateNewsActivity.this, "Прикрепите изображение к Новости", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Time time = new Time(Time.getCurrentTimezone());
+                        time.setToNow();
+                        String date = time.format("%H:%M") + "  " + time.format("%d.%m.%Y");
+                        ServerAction.addNews(DataBaseAction.getLoginImg(), DataBaseAction.getLoginName(), date, news, nameImg);
+                        DataBaseAction.initContext(getApplicationContext());
+                        ServerAction.getNews();
+                        startActivity(new Intent(CreateNewsActivity.this, MainActivity.class));
+                        CreateNewsActivity.this.finish();
+                        }
+                    }
                 }
-            }
         });
     }
 
@@ -115,100 +127,6 @@ public class CreateNewsActivity extends AppCompatActivity {
         });
     }
 
-    public int uploadFile(String sourceFileUri) {
-        String upLoadServerUri = "http://stairenx.ru/res/api/youlead/method/addNewsImg.php";
-        String fileName = sourceFileUri;
-        int serverResponseCode = 0;
-        HttpURLConnection conn = null;
-        DataOutputStream dos = null;
-        String lineEnd = "";
-        String twoHyphens = "--";
-        String boundary = "*****";
-        int bytesRead, bytesAvailable, bufferSize;
-        byte[] buffer;
-        int maxBufferSize = 1 * 2048 * 2048;
-        File sourceFile = new File(sourceFileUri);
-        if (!sourceFile.isFile()) {
-            Log.e("uploadFile", "Source File Does not exist");
-            return 0;
-        }
-        try { // open a URL connection to the Servlet
-            FileInputStream fileInputStream = new FileInputStream(sourceFile);
-            URL url = new URL(upLoadServerUri);
-            conn = (HttpURLConnection) url.openConnection(); // Open a HTTP
-            // connection to
-            // the URL
-            conn.setDoInput(true); // Allow Inputs
-            conn.setDoOutput(true); // Allow Outputs
-            conn.setUseCaches(false); // Don't use a Cached Copy
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Connection", "Keep-Alive");
-            conn.setRequestProperty("ENCTYPE", "multipart/form-data");
-            conn.setRequestProperty("Content-Type",
-                    "multipart/form-data;boundary=" + boundary);
-            conn.setRequestProperty("uploaded_file", fileName);
-            dos = new DataOutputStream(conn.getOutputStream());
-
-            dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name="+fileName+";filename="+fileName+""+lineEnd);
-            dos.writeBytes(lineEnd);
-
-            bytesAvailable = fileInputStream.available(); // create a buffer of
-            // maximum size
-
-            bufferSize = Math.min(bytesAvailable, maxBufferSize);
-            buffer = new byte[bufferSize];
-
-            // read file and write it into form...
-            bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-
-            while (bytesRead > 0) {
-                dos.write(buffer, 0, bufferSize);
-                bytesAvailable = fileInputStream.available();
-                bufferSize = Math.min(bytesAvailable, maxBufferSize);
-                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-            }
-
-            // send multipart form data necesssary after file data...
-            dos.writeBytes(lineEnd);
-            dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-
-            // Responses from the server (code and message)
-            serverResponseCode = conn.getResponseCode();
-            String serverResponseMessage = conn.getResponseMessage();
-
-            Log.i("uploadFile", "HTTP Response is : " + serverResponseMessage
-                    + ": " + serverResponseCode);
-            if (serverResponseCode == 200) {
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        // tv.setText("File Upload Completed.");
-                        Toast.makeText(CreateNewsActivity.this,
-                                "File Upload Complete.", Toast.LENGTH_SHORT)
-                                .show();
-                    }
-                });
-            }
-
-            // close the streams //CreateNews
-            fileInputStream.close();
-            dos.flush();
-            dos.close();
-
-        } catch (MalformedURLException ex) {
-            Toast.makeText(CreateNewsActivity.this, "MalformedURLException",
-                    Toast.LENGTH_SHORT).show();
-            Log.e("Upload file to server", "error: " + ex.getMessage(), ex);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(CreateNewsActivity.this,
-                    "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            Log.d("Upload file Exception",
-                    "Exception : " + e.getMessage(), e);
-        }
-        return serverResponseCode;
-    }
-
     public String getPath(Uri uri) {
         int column_index;
         String imagePath;
@@ -220,15 +138,123 @@ public class CreateNewsActivity extends AppCompatActivity {
         return imagePath;
     }
 
-    private class SEND_IMG extends AsyncTask<Uri,Void,Void> {
-        @Override
-        protected Void doInBackground(Uri... params) {
-            Uri imgUri = null;
-            for(Uri uriAr : params) {
-                imgUri = uriAr;
+    private static String setNameImg(String res){
+        String name;
+        int max;
+        List<String> arr = new ArrayList<>();
+        StringTokenizer strToken = new StringTokenizer(res, " /");
+        try {
+            for (int i = 0; i <= res.length(); i++) {
+                String text;
+                text = strToken.nextToken();
+                arr.add(text);
             }
-            uploadFile(getPath(imgUri));
+        }catch (Exception e){
+            e.getMessage();
+        }
+        max = arr.size() - 1;
+        name = arr.get(max);
+        return name;
+    }
+
+    private class SEND_IMG extends AsyncTask<Void,Void,Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            uploadFile(link);
             return null;
         }
     }
-}
+
+        public int uploadFile(String sourceFileUri) {
+            String fileName = sourceFileUri;
+            HttpURLConnection conn = null;
+            DataOutputStream dos = null;
+            String lineEnd = "\r\n";
+            String twoHyphens = "--";
+            String boundary = "*****";
+            int bytesRead, bytesAvailable, bufferSize;
+            byte[] buffer;
+            int maxBufferSize = 1 * 1024 * 1024;
+            File sourceFile = new File(sourceFileUri);
+            if (!sourceFile.isFile()) {
+                Log.e("uploadFile", "Source File not exist :"+sourceFileUri);
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(CreateNewsActivity.this, "Файл не найден", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                return 0;
+            }else{
+                try {
+                    // open a URL connection to the Servlet
+                    FileInputStream fileInputStream = new FileInputStream(sourceFile);
+                    URL url = new URL(Constants.UPLOAD_NEWS_IMAGE);
+                    // Open a HTTP  connection to  the URL
+                    conn = (HttpURLConnection) url.openConnection();
+                    conn.setDoInput(true); // Allow Inputs
+                    conn.setDoOutput(true); // Allow Outputs
+                    conn.setUseCaches(false); // Don't use a Cached Copy
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Connection", "Keep-Alive");
+                    conn.setRequestProperty("ENCTYPE", "multipart/form-data");
+                    conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+                    conn.setRequestProperty("userfile", fileName);
+
+                    dos = new DataOutputStream(conn.getOutputStream());
+                    dos.writeBytes(twoHyphens + boundary + lineEnd);
+                    dos.writeBytes("Content-Disposition: form-data; name='userfile';filename='"+nameImg+"'"+lineEnd);
+                    dos.writeBytes(lineEnd);
+
+                    // create a buffer of  maximum size
+                    bytesAvailable = fileInputStream.available();
+                    bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                    buffer = new byte[bufferSize];
+
+                    // read file and write it into form...
+                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+                    while (bytesRead > 0) {
+                        dos.write(buffer, 0, bufferSize);
+                        bytesAvailable = fileInputStream.available();
+                        bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                        bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+                    }
+
+                    // send multipart form data necesssary after file data...
+                    dos.writeBytes(lineEnd);
+                    dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+
+                    // Responses from the server (code and message)
+                    serverResponseCode = conn.getResponseCode();
+                    String serverResponseMessage = conn.getResponseMessage();
+                    Log.i("uploadFile", "HTTP Response is : "+ serverResponseMessage + ": " + serverResponseCode);
+
+                    if(serverResponseCode == 200){
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(CreateNewsActivity.this, "Изображение добавлено",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                    //close the streams //
+                    fileInputStream.close();
+                    dos.flush();
+                    dos.close();
+
+                } catch (MalformedURLException ex) {
+                    ex.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(CreateNewsActivity.this, "MalformedURLException",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    Log.e("Upload file to server", "error: " + ex.getMessage(), ex);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("server Exception", "Exception : "+ e.getMessage(), e);
+                }
+                return serverResponseCode;
+            } // End else block
+        }
+    }

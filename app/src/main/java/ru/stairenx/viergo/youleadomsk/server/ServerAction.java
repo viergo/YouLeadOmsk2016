@@ -202,9 +202,8 @@ public class ServerAction {
         }
     }
 
-    public static void addNews(String imgAuthor, String author, String date,String text/*, String img*/){
+    public static void addNews(String imgAuthor, String author, String date,String text, String img){
         String post_url = new String();
-        String img = "http://stairenx.ru/res/api/youlead/img/plug.png";
         try {
             post_url = Constants.ADD_NEWS+ "?action=insert&imgAuthor="
                     + URLEncoder.encode(String.valueOf(imgAuthor.toString()), "UTF-8")
